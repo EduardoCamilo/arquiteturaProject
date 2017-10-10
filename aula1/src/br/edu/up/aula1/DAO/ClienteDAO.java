@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 
 import br.edu.up.aula1.entidade.Cliente;
 
@@ -29,7 +30,9 @@ public class ClienteDAO implements Dao<Cliente>{
 	}
 	
 	public List<Cliente> listar(){
-		return null;
+		EntityManager em = emf.createEntityManager();
+		Query q = em.createQuery("from Cliente");
+		return q.getResultList();
 	}
 	
 	public Cliente buscarPorId(Integer id) {

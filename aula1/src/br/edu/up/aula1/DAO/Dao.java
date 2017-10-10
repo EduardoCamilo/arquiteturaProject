@@ -12,7 +12,7 @@ public interface Dao<T> {
 	
 	public void alterar(T t);
 	
-	public List<Cliente> listar();
+	public List<T> listar();
 	
 	public T buscarPorId(Integer id);
 }
