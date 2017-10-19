@@ -10,6 +10,8 @@ import br.edu.up.aula1.DAO.FuncionarioDAO;
 import br.edu.up.aula1.DAO.ProdutoDAO;
 import br.edu.up.aula1.entidade.Funcionario;
 import br.edu.up.aula1.entidade.Produto;
+import br.edu.up.aula1.service.ProdutoService;
+import br.edu.up.aula1.service.ServiceException;
 
 public class TestarProduto {
 
@@ -25,7 +27,11 @@ public class TestarProduto {
 		p.setValorDeVenda(14.9);
 		p.setMargemSeguranca(5);
 		
-		new ProdutoDAO().salvar(p);
+		try {
+			new ProdutoService().salvar(p);
+		}catch(ServiceException e) {
+			e.printStackTrace();
+		}
 		
 		assertEquals(true, p.getId() != null);
 	}

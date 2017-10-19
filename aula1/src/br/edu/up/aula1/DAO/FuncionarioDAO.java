@@ -12,37 +12,34 @@ import br.edu.up.aula1.entidade.Funcionario;
 
 public class FuncionarioDAO implements Dao<Funcionario> {
 
-	EntityManagerFactory emf = Persistence.createEntityManagerFactory("aula1");
-	
-	@Override
 	public void salvar(Funcionario f) {
-		EntityManager em = emf.createEntityManager();
+		EntityManager em = Conexao.getInstance();
 		
 		em.getTransaction().begin();
 		em.persist(f);
 		em.getTransaction().commit();
 	}
 
-	@Override
+	
 	public void excluir(Funcionario f) {
-		// TODO Auto-generated method stub
+		
 		
 	}
 
-	@Override
+	
 	public void alterar(Funcionario f) {
-		// TODO Auto-generated method stub
+		
 		
 	}
 
-	@Override
+	
 	public List<Funcionario> listar() {
-		EntityManager em = emf.createEntityManager();
+		EntityManager em = Conexao.getInstance();
 		Query q = em.createQuery("from Funcionario");
 		return q.getResultList();
 	}
 
-	@Override
+	
 	public Funcionario buscarPorId(Integer id) {
 		// TODO Auto-generated method stub
 		return null;

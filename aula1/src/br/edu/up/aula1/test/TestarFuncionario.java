@@ -8,6 +8,8 @@ import org.junit.Test;
 
 import br.edu.up.aula1.DAO.FuncionarioDAO;
 import br.edu.up.aula1.entidade.Funcionario;
+import br.edu.up.aula1.service.FuncionarioService;
+import br.edu.up.aula1.service.ServiceException;
 
 public class TestarFuncionario {
 
@@ -22,7 +24,11 @@ public class TestarFuncionario {
 		f.setCargo("Estoquista");
 		f.setHorario("matinal");
 		
-		new FuncionarioDAO().salvar(f);
+		try {
+			new FuncionarioService().salvar(f);
+		}catch(ServiceException e) {
+			e.printStackTrace();
+		}
 		
 		assertEquals(true, f.getId() != null);
 	}
