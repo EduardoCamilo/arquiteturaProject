@@ -27,4 +27,11 @@ public class FuncionarioService {
 		
 	}
 	
+	public void excluir(Funcionario f) throws ServiceException {
+		
+		Dao<Funcionario> funcionarioDao = FactoryDao.createFuncionarioDao();
+		funcionarioDao.excluir(f);
+		
+	}
+	
 }

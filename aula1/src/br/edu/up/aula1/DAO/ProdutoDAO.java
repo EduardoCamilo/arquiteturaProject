@@ -20,11 +20,19 @@ public class ProdutoDAO implements Dao<Produto> {
 	}
 
 	public void excluir(Produto p) {
+		EntityManager em = Conexao.getInstance();
 		
+		em.getTransaction().begin();
+		em.remove(em.merge(p));
+		em.getTransaction().commit();
 	}
 
 	public void alterar(Produto p) {
+		EntityManager em = Conexao.getInstance();
 		
+		em.getTransaction().begin();
+		em.merge(p);
+		em.getTransaction().commit();
 	}
 
 	public List<Produto> listar() {

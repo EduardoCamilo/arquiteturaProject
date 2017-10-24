@@ -26,4 +26,11 @@ public class ClienteService {
 		
 	}
 
+	public void excluir(Cliente c) throws ServiceException {
+		
+		Dao<Cliente> clienteDao = FactoryDao.createClienteDao();
+		clienteDao.excluir(c);
+		
+	}
+
 }

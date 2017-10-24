@@ -22,13 +22,21 @@ public class FuncionarioDAO implements Dao<Funcionario> {
 
 	
 	public void excluir(Funcionario f) {
+		EntityManager em = Conexao.getInstance();
 		
+		em.getTransaction().begin();
+		em.remove(em.merge(f));
+		em.getTransaction().commit();
 		
 	}
 
 	
 	public void alterar(Funcionario f) {
+		EntityManager em = Conexao.getInstance();
 		
+		em.getTransaction().begin();
+		em.merge(f);
+		em.getTransaction().commit();
 		
 	}
 
