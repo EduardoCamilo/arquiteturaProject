@@ -4,24 +4,26 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.List;
 
+import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.runners.MethodSorters;
 
 import br.edu.up.aula1.DAO.ClienteDAO;
-import br.edu.up.aula1.DAO.Dao;
 import br.edu.up.aula1.DAO.FactoryDao;
 import br.edu.up.aula1.entidade.Cliente;
 import br.edu.up.aula1.service.ClienteService;
 import br.edu.up.aula1.service.ServiceException;
 
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestarCliente {
 
+	static Cliente c = new Cliente();
 	
-	public void cadastrarCliente() {
-		
-		Cliente c = new Cliente();
+	@Test
+	public void TestAcadastrarCliente() {
 		
 		c.setId(null);
-		c.setNome("Sandy");
+		c.setNome("Luana");
 		
 		try {
 			new ClienteService().salvar(c);
@@ -29,13 +31,11 @@ public class TestarCliente {
 			e.printStackTrace();
 		}
 		
-	
-		
 		assertEquals(true, c.getId() != null);
 	}
 	
 	@Test
-	public void listarClientes() {
+	public void testClistarClientes() {
 		
 		List<Cliente> clientes = new ClienteDAO().listar();
 		
@@ -43,24 +43,22 @@ public class TestarCliente {
 	}
 	
 	@Test
-	public void excluirCliente() {
-		Cliente c = new Cliente();
-		
-		c.setId(7);
-		c.setNome("Sandy");
+	public void testDexcluirCliente() {
 		
 		try {
 			new ClienteService().excluir(c);
+			
+			c = FactoryDao.createClienteDao().buscarPorId(c.getId());
 		}catch(ServiceException e) {
 			e.printStackTrace();
 		}
+		
+		assertEquals(true, c ==  null);
 	}
 	
 	@Test
-	public void alterarCliente() {
-		Cliente c = new Cliente();
+	public void testBalterarCliente() {
 		
-		c.setId(5);
 		c.setNome("Flavio");
 		
 		try {
@@ -68,5 +66,7 @@ public class TestarCliente {
 		} catch (ServiceException e) {
 			e.printStackTrace();
 		}
+		
+		assertEquals(true, c.getId() != null);
 	}
 }

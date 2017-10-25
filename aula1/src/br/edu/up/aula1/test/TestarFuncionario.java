@@ -4,24 +4,28 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.List;
 
+import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.runners.MethodSorters;
 
+import br.edu.up.aula1.DAO.FactoryDao;
 import br.edu.up.aula1.DAO.FuncionarioDAO;
 import br.edu.up.aula1.entidade.Funcionario;
 import br.edu.up.aula1.service.FuncionarioService;
 import br.edu.up.aula1.service.ServiceException;
 
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestarFuncionario {
 
+	Funcionario f = new Funcionario();
+	
 	@Test
-	public void cadastrarFuncionario() {
-		
-		Funcionario f = new Funcionario();
+	public void testAcadastrarFuncionario() {
 		
 		f.setId(null);
-		f.setNome("Benyton");
-		f.setMatricula("e001");
-		f.setCargo("Estoquista");
+		f.setNome("Adriane");
+		f.setMatricula("e007");
+		f.setCargo("Caixa");
 		f.setHorario("matinal");
 		
 		try {
@@ -34,10 +38,43 @@ public class TestarFuncionario {
 	}
 	
 	@Test
-	public void listarFuncionario() {
+	public void testClistarFuncionario() {
 		
 		List<Funcionario> funcionarios = new FuncionarioDAO().listar();
 		
 		assertEquals(true, funcionarios.size()>0);
 	}
+	
+	@Test
+	public void testDexcluirCliente() {
+				
+		try {
+			new FuncionarioService().excluir(f);
+			
+			f = FactoryDao.createFuncionarioDao().buscarPorId(f.getId());
+		}catch(ServiceException e) {
+			e.printStackTrace();
+		}
+		
+		assertEquals(true, f == null);
+	}
+	
+	@Test
+	public void testBalterarCliente() {
+				
+		
+		f.setNome("Eduardo Cantu");
+		f.setMatricula("e004");
+		f.setCargo("Vendedor");
+		f.setHorario("matinal");
+		
+		try {
+			new FuncionarioService().alterar(f);
+		} catch (ServiceException e) {
+			e.printStackTrace();
+		}
+		
+		assertEquals(true, f.getId() != null);
+	}
+	
 }
