@@ -8,7 +8,6 @@ import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
-import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
@@ -17,9 +16,8 @@ import br.edu.up.aula1.entidade.Cliente;
 import br.edu.up.aula1.service.ClienteService;
 import br.edu.up.aula1.service.ServiceException;
 
-@Path("/detalhecliente")
-public class ClienteRest {
-	
+public class FuncionarioRest {
+
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public ArrayList<Cliente> listarClientes() {
@@ -56,5 +54,4 @@ public class ClienteRest {
 			e.printStackTrace();
 		}
 	}
-
 }

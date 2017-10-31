@@ -19,11 +19,11 @@ public class TestarCliente {
 
 	static Cliente c = new Cliente();
 	
-	@Test
+	
 	public void TestAcadastrarCliente() {
 		
 		c.setId(null);
-		c.setNome("Luana");
+		c.setNome("Bianca");
 		
 		try {
 			new ClienteService().salvar(c);
@@ -56,7 +56,7 @@ public class TestarCliente {
 		assertEquals(true, c ==  null);
 	}
 	
-	@Test
+	
 	public void testBalterarCliente() {
 		
 		c.setNome("Flavio");

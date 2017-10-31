@@ -17,7 +17,7 @@ import br.edu.up.aula1.service.ServiceException;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestarFuncionario {
 
-	Funcionario f = new Funcionario();
+	static Funcionario f = new Funcionario();
 	
 	@Test
 	public void testAcadastrarFuncionario() {

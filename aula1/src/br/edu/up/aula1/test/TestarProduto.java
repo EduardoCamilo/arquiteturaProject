@@ -38,6 +38,7 @@ public class TestarProduto {
 		assertEquals(true, p.getId() != null);
 	}
 	
+	@Test
 	public void testClistarProduto() {
 		
 		List<Produto> produtos = new ProdutoDAO().listar();
@@ -47,9 +48,7 @@ public class TestarProduto {
 	
 	@Test
 	public void testDexcluirCliente() {
-		
-		p.setId(2);
-		
+				
 		try {
 			new ProdutoService().excluir(p);
 			
@@ -75,5 +74,7 @@ public class TestarProduto {
 		} catch (ServiceException e) {
 			e.printStackTrace();
 		}
+		
+		assertEquals(true, p.getId() != null);
 	}
 }
